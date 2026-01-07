@@ -67,9 +67,22 @@ Este projeto implementa o Jogo da Vida de Conway, um autômato celular, usando J
 - **Função**: Fornece informações para usuários e desenvolvedores entenderem o projeto.
 
 ### `.venv/`
-- **Descrição**: Pasta do ambiente virtual Python (Virtual Environment).
-- **Conteúdo**: Scripts e bibliotecas isoladas para Python, ativadas via `Activate.ps1` no PowerShell.
-- **Função**: Usado para desenvolvimento ou execução de scripts Python relacionados ao projeto (ex.: ferramentas de build, testes ou automação), mas não é parte da aplicação web principal. Mantém dependências Python separadas do sistema.
+- **Descrição**: Pasta do ambiente virtual Python (Virtual Environment) criado para isolar dependências e versões de Python do sistema global, evitando conflitos entre projetos.
+- **Como Foi Montado**: Criado executando `python -m venv .venv` no terminal PowerShell dentro da pasta do projeto. O módulo `venv` do Python gera toda a estrutura automaticamente. Baseado em `pyvenv.cfg`, o comando foi: `C:\Users\84398\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe -m venv c:\Users\84398\Documents\UFJF\TrabalhoLFA\.venv`.
+- **Conteúdo Detalhado**:
+  - **`.gitignore`** (manual): Arquivo de configuração Git para ignorar a pasta .venv no versionamento, evitando commits desnecessários.
+  - **`Lib/`** (automático): Pasta com bibliotecas Python.
+    - `site-packages/`: Subpasta onde pacotes instalados via pip são armazenados (inicialmente vazia ou com mínimos como pip/setuptools).
+  - **`pyvenv.cfg`** (automático): Arquivo de configuração com metadados (home do Python base, versão 3.13.9, comando de criação, etc.).
+  - **`Scripts/`** (automático): Executáveis e scripts para gerenciar o ambiente.
+    - `Activate.ps1`, `activate.bat`, etc.: Scripts para ativar o .venv (modificam PATH para isolamento).
+    - `deactivate.bat`: Script para desativar e restaurar o ambiente global.
+    - `pip.exe`, `python.exe`, etc.: Versões isoladas do pip e Python.
+- **O Que É Pronto vs. Manual**:
+  - **Pronto**: Estrutura base (Lib/, pyvenv.cfg, Scripts/) gerada automaticamente pelo `venv`.
+  - **Manual**: Criação do comando, adição de .gitignore, ativação/desativação, e instalações de pacotes via pip.
+- **Como Funciona**: Ativação isola o Python (ex.: `& .venv\Scripts\Activate.ps1`), permitindo instalar pacotes sem afetar o sistema. Pacotes vão para `Lib/site-packages/`. Desativação restaura o global. Usado para ferramentas Python no desenvolvimento, não parte da app web.
+- **Função Geral**: Mantém dependências Python separadas, facilitando gerenciamento e evitando conflitos.
 
 ### `.git/`
 - **Descrição**: Pasta do repositório Git para controle de versão.
